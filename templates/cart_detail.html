@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+{% load cart_tag %}
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PolyShoppers</title>
+  <script src="https://cdn.ethers.io/scripts/ethers-v3.min.js" charset="utf-8" type="text/javascript"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gray-100">
+  <div class="container mx-auto mt-10">
+    <div class="flex shadow-md my-10">
+      <div class="w-3/4 bg-white px-10 py-10">
+        <div class="flex justify-between border-b pb-8">
+          <h1 class="font-semibold text-2xl">Shopping Cart</h1>
+          {% if isSupporterDone == False%}
+        </div>
+        <div class="flex mt-10 mb-5">
+          <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product details</h3>
+        </div>
+        {% for key,value in request.session.cart.items %}
+        <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
+          
+          <div class="flex w-2/5"> <!-- product -->
+            
+            <div class="flex flex-col justify-between ml-4 flex-grow">
+              <span class="font-bold text-sm">{{value.name}}</span>
+              <span class="text-red-500 text-xs">{{value.description}}</span>
+              <a href="#" class="font-semibold hover:text-red-500 text-gray-500 text-xs">Remove</a>
+            </div>
+          </div>
+          <div class="flex justify-center w-1/5">
+            <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
+            </svg>
+            <input class="mx-2 border text-center w-8" type="text" value="1">
+
+            <svg class="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
+              <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
+            </svg>
+          </div>
+          <span class="text-center w-1/5 font-semibold text-sm">{{value.price}}</span>
+          
+        </div>
+        {% endfor %}
+        <a href="#" class="flex font-semibold text-indigo-600 text-sm mt-10">
+      
+          <svg class="fill-current mr-2 text-indigo-600 w-4" viewBox="0 0 448 512"><path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"/></svg>
+          Continue Shopping
+        </a>
+      </div>
+     
+      <div id="summary" class="w-1/4 px-8 py-10">
+        <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
+        <div class="flex justify-between mt-10 mb-5">
+        </div>
+        <div>
+          <label class="font-medium inline-block mb-3 text-sm uppercase">Email</label>
+<input type="text" id="promo" placeholder="Enter your email" class="p-2 text-sm w-full">
+          </select>
+        </div>
+        <div class="py-10">
+          <label for="promo" class="font-semibold inline-block mb-3 text-sm uppercase">Pin Code</label>
+          <input type="text" id="promo" placeholder="Enter pin code" class="p-2 text-sm w-full">
+        </div>
+
+        <div class="border-t mt-8">
+          <div class="flex font-semibold justify-between py-6 text-sm uppercase">
+            <span>Total cost</span>
+            <span>{{total}} MATIC</span>
+          </div>
+          <button onClick="connectWallet();" class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {% else %}
+
+  Thanks for the support
+  {% endif %}
+
+  <form action="{% url 'clean_user_cart' %}" method="POST" hidden>
+    {% csrf_token %}
+    <input type="text" name="sender" id="sender" />
+    <input type="submit" id="clean-up" />
+  </form>
+
+
+
+</body>
+
+
+
+
+  <script>
+
+    const receiver = "{{receiverWalletAddress}}";
+    let sender;
+    console.log('receiver');
+    console.log(receiver);
+    async function connectWallet() {
+      if (window.ethereum) {
+        const allWalletAccounts = await window.ethereum.request({
+          method: 'eth_requestAccounts'
+        });
+        sender = allWalletAccounts[0];
+        document.getElementById('sender').value = sender;
+        transaction();
+        console.log('sender' + sender);
+      }
+    }
+
+    async function transaction() {
+      const _1_MATIC_value = "{{ total }}";
+      const provider_t = new ethers.providers.Web3Provider(window.ethereum);
+      const signer_t = provider_t.getSigner();
+      console.log(signer_t);
+      const txn = await signer_t.sendTransaction({ to: receiver, value: ethers.utils.parseEther(_1_MATIC_value) });
+      const x = txn.wait();
+      console.log('Hello');
+      console.log(x);
+      alert('Money Sent to Receiver');
+      document.getElementById('clean-up').click();
+    }
+  </script>
+
+
+
+
+
+</html>

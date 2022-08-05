@@ -1,0 +1,232 @@
+<html>
+  <head>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+
+    <!-- alpine.js is used for handling toggle of navbar on mobile screens, switch it with your own front end framework
+    if needed -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+  </head>
+
+  <body>
+    <div class="py-2 bg-gray-100 text-gray-900 min-h-screen">
+
+      <header class="px-5 sm:px-10 md:px-10 md:py-5 lg:px-20 flex items-center justify-between">
+        <div>
+          <p class="text-xl text-indigo-500"><strong>FemPure</strong></p>
+        </div>
+        <div x-data="{ navOpen: false }">
+          <button @click="navOpen = true">
+            <svg class="cursor-pointer text-gray-700 hover:text-gray-900 w-6 md:hidden" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+          <div :class="{'hidden': !navOpen}" class="md:block fixed top-0 inset-x-0 bg-white p-8 m-4 z-30 rounded-lg shadow md:rounded-none md:shadow-none md:p-0 md:m-0 md:relative md:bg-transparent">
+            <button @click="navOpen = false" class="absolute top-0 right-0 mr-5 mt-5 md:hidden">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x">
+                <path d="M18 6L6 18M6 6l12 12"/>
+              </svg>
+            </button>
+            <div class="flex flex-col items-center justify-center md:block">
+              <a href="#" class="transition-all duration-100 ease-in-out pb-1 border-b-2 text-indigo-500 border-transparent hover:border-indigo-300 hover:text-gray-600 md:mr-8 text-lg md:text-sm font-bold tracking-wide my-4 md:my-0">
+                Home
+              </a>
+              <a href="#" class="transition-all duration-100 ease-in-out pb-1 border-b-2 text-indigo-500 border-transparent hover:border-indigo-300
+              hover:text-indigo-600 md:mr-8 text-lg md:text-sm font-bold tracking-wide my-4 md:my-0">
+                About
+              </a>
+              <button class="border border-transparent rounded font-semibold tracking-wide text-lg md:text-sm px-5 py-3 md:py2
+              focus:outline-none focus:shadow-outline bg-indigo-600 text-gray-100 hover:bg-indigo-800
+              hover:text-gray-200 transition-all duration-300 ease-in-out my-4 md:my-0 w-full md:w-auto" id="wallet-changeMe" onClick="connectWallet();">
+                Login With MetaMask 🦊
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+    <section class="px-2 py-32 bg-white md:px-0">
+        <div class="container items-center max-w-6xl px-8 mx-auto xl:px-5">
+            <div class="flex flex-wrap items-center sm:-mx-3">
+                <div class="w-full md:w-1/2 md:px-3">
+                    <div
+                        class="w-full pb-6 space-y-6 sm:max-w-md lg:max-w-lg md:space-y-4 lg:space-y-8 xl:space-y-9 sm:pr-5 lg:pr-0 md:pb-0">
+                        <h1
+                            class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl">
+
+              <span class="block text-indigo-600 lg:inline">FemPure</span>
+                        </h1>
+                        <p class="mx-auto text-base text-gray-500 sm:max-w-md lg:text-xl md:max-w-3xl">An E-Commerce for Women Hygiene Products</b>.</p>
+                        <div class="relative flex flex-col sm:flex-row sm:space-x-4">
+                            <a href="#_"
+                                class="flex items-center w-full px-6 py-3 mb-3 text-lg text-white bg-indigo-600 rounded-md sm:mb-0 hover:bg-indigo-700 sm:w-auto">
+                                Get Started
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-1" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
+                            <a href="#_"
+                                class="flex items-center px-6 py-3 text-gray-500 bg-gray-100 rounded-md hover:bg-gray-200 hover:text-gray-600">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <div class="w-full h-auto overflow-hidden rounded-md shadow-xl sm:rounded-xl">
+                        <img src="https://previews.123rf.com/images/natsa/natsa1802/natsa180200004/95995928-feminine-hygiene-set-lovely-collection-of-cute-vector-illustrations-.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <div class="px-5 sm:px-10 md:px-20 lg:px-10 xl:px-20 py-8 bg-indigo-100" id="features">
+          <div class="max-w-screen-xl mx-auto">
+            <h3 class="leading-none font-black text-3xl">
+              Features
+            </h3>
+
+            <div class="flex flex-col items-center flex-wrap lg:flex-row lg:items-stretch lg:flex-no-wrap lg:justify-between">
+              <div class="w-full max-w-sm mt-6 lg:mt-8 bg-gray-100 rounded shadow-lg p-12 lg:p-8 lg:mx-4 xl:p-12">
+                <div class="p-4 inline-block bg-indigo-200 rounded-lg">
+                  <svg class="text-indigo-500 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                  </svg>
+                </div>
+                <div class="mt-4 font-extrabold text-2xl tracking-wide">
+                HOW DOES IT WORK?
+                </div>
+                <br>
+                <div class="text-sm">
+                  We developed a blockchain application that will allow users to shop hygiene products anonymously and securely without revealing their identity.
+                </div>
+              </div>
+
+              <div class="w-full max-w-sm mt-8 bg-gray-100 rounded shadow-lg p-12 lg:p-8 lg:mx-4 xl:p-12">
+                <div class="p-4 inline-block bg-green-200 rounded-lg">
+                  <svg class="text-green-500 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23"/>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                  </svg>
+                </div>
+                <div class="mt-4 font-extrabold text-2xl tracking-wide">
+                ACCEPTING PAYMENTS
+                </div>
+                <br>
+                <div class="text-sm">
+                  We are supporting MATIC tokens for payment.
+                </div>
+              </div>
+
+              <div class="w-full max-w-sm mt-8 bg-gray-100 rounded shadow-lg p-12 lg:p-8 lg:mx-4 xl:p-12">
+                <div class="p-4 inline-block bg-yellow-200 rounded-lg">
+                  <svg class="text-yellow-500 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path xmlns="http://www.w3.org/2000/svg" d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                    <line xmlns="http://www.w3.org/2000/svg" x1="12" y1="9" x2="12" y2="13"/>
+                    <line xmlns="http://www.w3.org/2000/svg" x1="12" y1="17" x2="12.01" y2="17"/>
+                  </svg>
+                </div>
+                <div class="mt-4 font-extrabold text-2xl tracking-wide">
+                 OUR NEXT STEPS
+                </div>
+                <br>
+                <div class="text-sm">
+                100% of ALL profit from fees/sales will go back to the community. Our aim is to empower the women, as every women is unique and beautiful in her own way.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+<div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+   <h2 class="text-4xl font-bold text-center text-indigo-600">Create Store</h2>
+  <div class="relative py-3 w-11/12 max-w-xl sm:mx-auto">
+    <div class="relative p-8 bg-white shadow-sm sm:rounded-xl">
+        <form method="post" action="{% url 'validate' %}" enctype='multipart/form-data' class="w-full">
+                    {% csrf_token %}
+        <div class="mb-5 relative">
+          <input type="text" id="username" name="username-id" class="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16 placeholder-transparent" placeholder="username" autocomplete="off" />
+          <label for="email" class="peer-placeholder-shown:opacity-100   opacity-75 peer-focus:opacity-75 peer-placeholder-shown:scale-100 scale-75 peer-focus:scale-75 peer-placeholder-shown:translate-y-0 -translate-y-3 peer-focus:-translate-y-3 peer-placeholder-shown:translate-x-0 translate-x-1 peer-focus:translate-x-1 absolute top-0 left-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out">Username</label>
+        </div>
+        <input type="text" id="wallet-address" name="wallet-address" class="form-control input_text"
+                      placeholder="Wallet" hidden>
+        <div class="mb-5 relative">
+          <input id="about" name="about" class="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16 placeholder-transparent" placeholder="about" autocomplete="off" />
+          <label for="password" class="peer-placeholder-shown:opacity-100   opacity-75 peer-focus:opacity-75 peer-placeholder-shown:scale-100 scale-75 peer-focus:scale-75 peer-placeholder-shown:translate-y-0 -translate-y-3 peer-focus:-translate-y-3 peer-placeholder-shown:translate-x-0 translate-x-1 peer-focus:translate-x-1 absolute top-0 left-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out">About</label>
+        </div>
+        <div class="mb-5 relative">
+          <input type="text" id="youtube" name="youtube" class="peer pt-8 border border-gray-200 focus:outline-none rounded-md focus:border-gray-500 focus:shadow-sm w-full p-3 h-16 placeholder-transparent" placeholder="about" autocomplete="off" />
+          <label for="password" class="peer-placeholder-shown:opacity-100   opacity-75 peer-focus:opacity-75 peer-placeholder-shown:scale-100 scale-75 peer-focus:scale-75 peer-placeholder-shown:translate-y-0 -translate-y-3 peer-focus:-translate-y-3 peer-placeholder-shown:translate-x-0 translate-x-1 peer-focus:translate-x-1 absolute top-0 left-0 px-3 py-5 h-full pointer-events-none transform origin-left transition-all duration-100 ease-in-out">Social Handle</label>
+        </div>
+        <button onclick="javascript:void(0);" class="w-full bg-indigo-600 text-white p-3 rounded-md">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+      <footer class="px-5 sm:px-10 md:px-20 py-8">
+        <div class="flex flex-col items-center lg:flex-row-reverse justify-between">
+          <div class="">
+            <a class="mx-4 text-sm font-bold text-indigo-600 hover:text-indigo-800" href="#">Home</a>
+            <a class="mx-4 text-sm font-bold text-indigo-600 hover:text-indigo-800" href="#">About Us</a>
+            <a class="mx-4 text-sm font-bold text-indigo-600 hover:text-indigo-800" href="#">Careers</a>
+            <!-- <a href="#">About Us</a> -->
+            <!-- <a href="#">Careers</a> -->
+          </div>
+
+          <div class="mt-4 text-xs font-bold text-gray-500">
+            &copy; 2022 FEMPURE
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+<script>
+  console.log("...");
+
+  async function connectWallet() {
+    console.log('Helloworld');
+    if (window.ethereum) {
+      console.log('1111111111111111111');
+      const allWalletAccounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      console.log(allWalletAccounts[0]);
+
+      document.getElementById('wallet-address').value = allWalletAccounts[0];
+      document.getElementById('wallet-changeMe').innerText = '👛 ' + allWalletAccounts[0].slice(0, 8) + '.....';
+    }
+  }
+
+
+  $('#username').on('change', function () {
+    var username = $(this).val();
+    console.log("...")
+    $.ajax({
+      url: 'check_username/',
+      data: {
+        'username': username
+      },
+      dataType: 'json',
+      success: function (data) {
+        if (data.username) {
+          alert("Username already taken");
+        }
+      }
+    });
+  });
+
+</script>
+
+</html>
