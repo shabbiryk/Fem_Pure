@@ -130,4 +130,5 @@ STATIC_URL = '/images/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/images')
 
+
 CART_SESSION_ID = 'cart'
