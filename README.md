@@ -1,7 +1,9 @@
-# PolyShoppers
-Create your own online store which can accept payments in $MATIC.
-Polyshoppers is a shopify on Polygon which lets seller setup a store online where he can sell and manage his products.
-Through cryptocurrencies like Polygon, the customers can make payments in a quick and hassle-free manner with low gas fees.
+FemPure is a complete decentralized e-commerce platform made for women with all the data hosted on IPFS which allows:
+- The guest to browse around the inventory.
+- User to register using their Metamask wallet address, providing further their pincode and residential address.
+- Upon adding items to the cart, users can checkout with payment of Matic tokens.
+- The order will be placed, and a delivery partner will be assigned for that order.
+- User can track the order
 
 
 ## Clone this repo
