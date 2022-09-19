@@ -9,7 +9,7 @@ FemPure is a complete decentralized e-commerce platform made for women with all 
 ## Clone this repo
 
 ```bash
-git clone https://github.com/meta-ps/PolyShoppers.git
+git clone https://github.com/shabbiryk/Fem_Pure.git
 ```
 
 ## Run
@@ -18,7 +18,7 @@ Make sure you have `python` and `Django` install then run
 
 ```python
 npm i
-python manage.py makemigrations PolyShoppers
+python manage.py makemigrations FemPure
 python manage.py migrate
 python manage.py runserver
 ```
